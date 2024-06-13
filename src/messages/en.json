@@ -1,0 +1,11 @@
+{
+  "General": {
+    "add": "Add",
+    "start": "Get Started",
+    "Theme": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    }
+  }
+}

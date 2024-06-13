@@ -1,4 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
@@ -12,6 +11,35 @@ yarn dev
 pnpm dev
 # or
 bun dev
+```
+
+## Features
+
+This template uses [shadcn](https://github.com/shadcn)'s Next.js app structure from [shadcn/ui](https://ui.shadcn.com/).
+
+- Next.js 14+ `/app` router
+- TypeScript
+- Tailwind CSS
+- shadcn/ui (Radix UI + Tailwind)
+- Prettier (w/ auto sort imports and tailwind classes)
+- SEO optimized
+- Typesafe env, icons, and config
+- Ready to use - jump right into development
+
+## Scripts
+
+If you are using a different package manager, be sure to update the package.json format scripts.
+
+1. Check project formatting
+
+```bash
+pnpm format:check
+```
+
+2. Format the project
+
+```bash
+pnpm format
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
