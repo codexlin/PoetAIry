@@ -1,0 +1,13 @@
+dist
+.contentlayer
+apps/www/pages/api/components.json
+
+# dependencies
+/node_modules
+
+# next.js
+/.next
+/out
+
+# production
+/build
