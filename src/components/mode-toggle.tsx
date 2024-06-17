@@ -13,8 +13,13 @@ import {
 import { Icons } from "@/components/icons"
 
 export function ModeToggle() {
-  const { setTheme } = useTheme()
+  const { setTheme, theme } = useTheme()
 
+  const themes = [
+    { name: "Light", value: "light" },
+    { name: "Dark", value: "dark" },
+    { name: "System", value: "system" },
+  ]
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,15 +30,15 @@ export function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
+        {themes.map((i) => (
+          <DropdownMenuItem
+            key={i.value}
+            onClick={() => setTheme(i.value)}
+            className={theme === i.value ? "font-bold" : ""}
+          >
+            {i.name}
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   )

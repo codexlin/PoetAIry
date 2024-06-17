@@ -1,17 +1,17 @@
 "use client"
 
 import * as React from "react"
-import { useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
+import { Icons } from "@/components/icons"
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Icons } from "@/components/icons"
+} from "./ui/dropdown-menu"
 
 const LangSwitcher: React.FC = () => {
   interface Option {
@@ -22,11 +22,18 @@ const LangSwitcher: React.FC = () => {
   const pathname = usePathname()
   const options: Option[] = [
     { country: "English", code: "en" },
-    { country: "Chinese", code: "zh" },
-    { country: "Japanese", code: "ja" },
+    { country: "简体中文", code: "zh" },
+    { country: "日本語", code: "ja" },
   ]
+  const currentLang = pathname.split("/")[1]
+
   const setOption = (code: string) => {
-    router.push(`/${code}`)
+    const paths = pathname.split("/")
+    paths[1] = code
+    const newPath = paths.join("/")
+    // const currentPath = pathname ? pathname.split("/").slice(2).join("/") : ""
+    // const newPath = `/${code}/${currentPath}`
+    router.push(newPath)
   }
   return (
     <>
@@ -40,7 +47,11 @@ const LangSwitcher: React.FC = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           {options.map((i) => (
-            <DropdownMenuItem key={i.code} onClick={() => setOption(i.code)}>
+            <DropdownMenuItem
+              key={i.code}
+              onClick={() => setOption(i.code)}
+              className={currentLang === i.code ? "font-bold" : ""}
+            >
               {i.country}
             </DropdownMenuItem>
           ))}
@@ -49,4 +60,5 @@ const LangSwitcher: React.FC = () => {
     </>
   )
 }
+
 export default LangSwitcher
