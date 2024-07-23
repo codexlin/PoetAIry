@@ -1,21 +1,3 @@
-// import createMiddleware from "next-intl/middleware"
-//
-// //定义一个中间件，它匹配语言环境，并根据用户的首选语言重定向用户
-// const middleware = createMiddleware({
-//   // A list of all locales that are supported
-//   locales: ["en", "ja", "zh"],
-//   // Default locale if no match
-//   defaultLocale: "en",
-//   localeDetection: false,
-// })
-//
-// export default middleware
-//
-// export const config = {
-//   // Match only internationalized pathnames
-//   // matcher: ["/", "/(zh|ja|en)/:page*"],
-//   matcher: ["/((?!api|_next|.*\\..*).*)"],
-// }
 import { NextMiddleware, NextRequest, NextResponse } from "next/server"
 import createMiddleware from "next-intl/middleware"
 
@@ -41,14 +23,10 @@ const middleware: NextMiddleware = createMiddleware({
     }
 
     // 检查浏览器语言是否在支持的语言列表中，否则使用默认语言
-    const targetLocale = locales.includes(browserLanguage)
-      ? browserLanguage
-      : defaultLocale
+    const targetLocale = locales.includes(browserLanguage) ? browserLanguage : defaultLocale
 
     // 重定向到浏览器语言或默认语言
-    return NextResponse.redirect(
-      new URL(`/${targetLocale}${pathname}`, request.url),
-    )
+    return NextResponse.redirect(new URL(`/${targetLocale}${pathname}`, request.url))
   },
 })
 

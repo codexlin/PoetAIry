@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
@@ -20,6 +20,7 @@ const LangSwitcher: React.FC = () => {
   }
   const router = useRouter()
   const pathname = usePathname()
+  const searchParams = useSearchParams()
   const options: Option[] = [
     { country: "English", code: "en" },
     { country: "简体中文", code: "zh" },
@@ -30,9 +31,8 @@ const LangSwitcher: React.FC = () => {
   const setOption = (code: string) => {
     const paths = pathname.split("/")
     paths[1] = code
-    const newPath = paths.join("/")
-    // const currentPath = pathname ? pathname.split("/").slice(2).join("/") : ""
-    // const newPath = `/${code}/${currentPath}`
+    const queryString = searchParams?.toString() || ""
+    const newPath = queryString ? `${paths.join("/")}?${queryString}` : paths.join("/")
     router.push(newPath)
   }
   return (
